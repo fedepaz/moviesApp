@@ -22,13 +22,23 @@ import { MatTableModule } from "@angular/material/table";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { HeaderComponent } from "./components/header/header.component";
-import { HomeComponent } from './pages/home/home.component';
-import { MoviesHeaderComponent } from './pages/home/components/movies-header/movies-header.component';
-import { FiltersComponent } from './pages/home/components/filters/filters.component';
-import { MoviesBoxComponent } from './pages/home/components/movies-box/movies-box.component';
+import { HomeComponent } from "./pages/home/home.component";
+import { MoviesHeaderComponent } from "./pages/home/components/movies-header/movies-header.component";
+import { FiltersComponent } from "./pages/home/components/filters/filters.component";
+import { MoviesBoxComponent } from "./pages/home/components/movies-box/movies-box.component";
+import { WishListComponent } from "./pages/wish-list/wish-list.component";
+import { WishlistService } from "./services/wishlist.service";
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, HomeComponent, MoviesHeaderComponent, FiltersComponent, MoviesBoxComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    HomeComponent,
+    MoviesHeaderComponent,
+    FiltersComponent,
+    MoviesBoxComponent,
+    WishListComponent,
+  ],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -47,7 +57,7 @@ import { MoviesBoxComponent } from './pages/home/components/movies-box/movies-bo
     MatSnackBarModule,
     BrowserAnimationsModule,
   ],
-  providers: [provideClientHydration()],
+  providers: [provideClientHydration(), WishlistService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

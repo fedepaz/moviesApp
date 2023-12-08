@@ -1,11 +1,16 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "./pages/home/home.component";
+import { WishListComponent } from "./pages/wish-list/wish-list.component";
 
 const routes: Routes = [
   {
     path: "home",
     component: HomeComponent,
+  },
+  {
+    path: "wishlist",
+    component: WishListComponent,
   },
   {
     path: "",

@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { WishlistService } from "../../services/wishlist.service";
+import { Movie } from "../../models/mov.model";
 
 const ROWS_HEIGHT: { [id: number]: number } = {
   1: 400,
@@ -14,7 +16,7 @@ export class HomeComponent implements OnInit {
   cols = 3;
   rowHeight = ROWS_HEIGHT[this.cols];
   category: string | undefined;
-  constructor() {}
+  constructor(private wishListService: WishlistService) {}
   ngOnInit(): void {}
 
   onColumnsCountChange(colsNum: number): void {
@@ -23,5 +25,12 @@ export class HomeComponent implements OnInit {
   }
   onShowCategory(newCategory: string): void {
     this.category = newCategory;
+  }
+  onAddToCart(movie: Movie): void {
+    this.wishListService.addToWishList({
+      movie: movie.image,
+      name: movie.title,
+      id: movie.id,
+    });
   }
 }
