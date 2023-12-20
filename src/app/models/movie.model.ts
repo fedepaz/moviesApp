@@ -5,5 +5,7 @@ export interface WishList {
 export interface MovieItem {
   movie: string;
   name: string;
+  quantity: number;
+  category: string[];
   id: number;
 }

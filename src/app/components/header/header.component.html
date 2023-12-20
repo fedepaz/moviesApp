@@ -2,55 +2,33 @@
   <a routerLink="home">DashBoard </a>
   <button mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon
-      [matBadge]="1"
-      matBadgeColor="warn"
+      [matBadge]="movieQuantity"
+      [matBadgeHidden]="!movieQuantity"
+      matBadgeColor="accent"
       class="mat-icon notranslate mat-badge"
       aria-hidden="false"
-      >shopping_cart</mat-icon
+      >list_alt</mat-icon
     >
   </button>
   <mat-menu #menu="matMenu">
     <div class="p-3 divide-y divide-solid">
       <div class="pb-3 flex justify-between">
-        <span class="mr-16">1 movie</span>
+        <span class="mr-16">{{ movieQuantity }} movie</span>
         <a routerLink="wishlist"> View WatchList</a>
       </div>
-      <div class="py-3">
-        <div class="flex justify-between font-light mb-2">
-          Keyboard x 1
-          <span class="font-bold">
-            {{ "150" | currency }}
-          </span>
-        </div>
-        <div class="flex justify-between font-light mb-2">
-          Keyboard x 1
-          <span class="font-bold">
-            {{ "150" | currency }}
-          </span>
-        </div>
-        <div class="flex justify-between font-light mb-2">
-          Keyboard x 1
-          <span class="font-bold">
-            {{ "150" | currency }}
-          </span>
+      <div *ngIf="wishList.movies.length" class="py-3">
+        <div
+          *ngFor="let movie of wishList.movies"
+          class="flex justify-between mb-2 font-bold"
+        >
+          {{ movie.name }}
         </div>
       </div>
       <div class="flex justify-between py-3 font-light">
         Total:
         <span class="font-bold">
-          {{ "450" | currency }}
+          {{ movieQuantity }}
         </span>
-      </div>
-      <div class="pt-3 flex justify-between">
-        <button class="bg-rose-600 text-white rounded-full w-9 h-9">
-          <mat-icon> remove_shopping_cart </mat-icon>
-        </button>
-        <button
-          routerLink="cart"
-          class="bg-green-600 text-white rounded-full w-9 h-9"
-        >
-          <mat-icon> shopping_cart </mat-icon>
-        </button>
       </div>
     </div>
   </mat-menu>

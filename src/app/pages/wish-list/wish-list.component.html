@@ -27,12 +27,22 @@
 
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef>
-        <button mat-raised-button color="warn" class="float-right">
+        <button
+          (click)="onClearWihsList()"
+          mat-raised-button
+          color="warn"
+          class="float-right"
+        >
           Clear All
         </button>
       </th>
       <td mat-cell *matCellDef="let element">
-        <button mat-mini-fab color="warn" class="float-right">
+        <button
+          (click)="onRemoveFromWishList(element)"
+          mat-mini-fab
+          color="warn"
+          class="float-right"
+        >
           <mat-icon>close</mat-icon>
         </button>
       </td>

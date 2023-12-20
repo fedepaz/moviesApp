@@ -1,0 +1,41 @@
+<mat-drawer-container
+  [autosize]="true"
+  class="min-h-full max-w-7xl mx-auto border-x"
+>
+  <div class="flex justify-center m-4">
+    <div id="player">
+      <youtube-player
+        [videoId]="videoId"
+        [height]="500"
+        [width]="1000"
+        suggestedQuality="highres"
+        [playerVars]="{
+          autoplay: 1,
+          origin: videoURL,
+          enablejsapi: 1
+        }"
+      >
+      </youtube-player>
+    </div>
+  </div>
+  <div class="w-full px-8 flex flex-col justify-between">
+    <div>
+      <span class="flex justify-center">
+        <h5>{{ movie?.genre }}</h5>
+      </span>
+      <span class="flex justify-center">
+        <h3>{{ movie?.rating }}</h3>
+        <mat-icon class="text-yellow-500">star</mat-icon>
+      </span>
+    </div>
+    <h2 class="font-bold">{{ movie?.title }}</h2>
+    <p>{{ movie?.releasedDate }}</p>
+    <p>{{ movie?.description }}</p>
+  </div>
+  <div class="flex justify-between m-4">
+    <span class="text-red-400">Add to Wish List</span>
+    <button (click)="onAddToWishList()">
+      <mat-icon class="text-gray-300">queue</mat-icon>
+    </button>
+  </div>
+</mat-drawer-container>

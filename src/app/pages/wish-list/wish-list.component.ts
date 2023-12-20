@@ -1,35 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MovieItem, WishList } from "../../models/movie.model";
-
-const tenet: MovieItem = {
-  movie: "https://via.placeholder.com/150",
-  name: "Tenet",
-  id: 1,
-};
-
-const spiderVerse: MovieItem = {
-  movie: "https://via.placeholder.com/150",
-  name: "Spider-Man: Into the Spider-Verse",
-  id: 2,
-};
-
-const knivesOut: MovieItem = {
-  movie: "https://via.placeholder.com/150",
-  name: "Knives Out",
-  id: 3,
-};
-
-const guardiansOfTheGalaxy: MovieItem = {
-  movie: "https://via.placeholder.com/150",
-  name: "Guardians of the Galaxy",
-  id: 4,
-};
-
-const ageOfUltron: MovieItem = {
-  movie: "https://via.placeholder.com/150",
-  name: "Avengers: Age of Ultron",
-  id: 5,
-};
+import { WishlistService } from "../../services/wishlist.service";
 
 @Component({
   selector: "app-wish-list",
@@ -37,13 +8,23 @@ const ageOfUltron: MovieItem = {
 })
 export class WishListComponent implements OnInit {
   wishList: WishList = {
-    movies: [tenet, spiderVerse, knivesOut, guardiansOfTheGalaxy, ageOfUltron],
+    movies: [],
   };
   dataSource: Array<MovieItem> = [];
   displayedColumns: Array<string> = ["movie", "name", "action"];
 
-  constructor() {}
+  constructor(private wishListService: WishlistService) {}
   ngOnInit(): void {
     this.dataSource = this.wishList.movies;
+    this.wishListService.wishList.subscribe((_wishList: WishList) => {
+      this.wishList = _wishList;
+      this.dataSource = this.wishList.movies;
+    });
+  }
+  onClearWihsList(): void {
+    this.wishListService.clearCart();
+  }
+  onRemoveFromWishList(movie: MovieItem): void {
+    this.wishListService.removeFromWishList(movie);
   }
 }

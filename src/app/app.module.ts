@@ -28,6 +28,9 @@ import { FiltersComponent } from "./pages/home/components/filters/filters.compon
 import { MoviesBoxComponent } from "./pages/home/components/movies-box/movies-box.component";
 import { WishListComponent } from "./pages/wish-list/wish-list.component";
 import { WishlistService } from "./services/wishlist.service";
+import { MoviesDBService } from "./services/movies-db.service";
+import { MovieDetailComponent } from "./pages/home/components/movie-detail/movie-detail.component";
+import { YouTubePlayerModule } from "@angular/youtube-player";
 
 @NgModule({
   declarations: [
@@ -38,6 +41,7 @@ import { WishlistService } from "./services/wishlist.service";
     FiltersComponent,
     MoviesBoxComponent,
     WishListComponent,
+    MovieDetailComponent,
   ],
   imports: [
     HttpClientModule,
@@ -56,8 +60,10 @@ import { WishlistService } from "./services/wishlist.service";
     MatBadgeModule,
     MatSnackBarModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    YouTubePlayerModule,
   ],
-  providers: [provideClientHydration(), WishlistService],
+  providers: [provideClientHydration(), WishlistService, MoviesDBService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

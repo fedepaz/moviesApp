@@ -10,10 +10,13 @@
   <mat-drawer-content class="p-6">
     <app-movies-header
       (columnsCountChange)="onColumnsCountChange($event)"
+      (itemsCountChange)="onItemsCountChange($event)"
+      (sortChange)="onSortChange($event)"
     ></app-movies-header>
     <mat-grid-list gutterSize="16" [cols]="cols" [rowHeight]="rowHeight">
-      <mat-grid-tile>
+      <mat-grid-tile *ngFor="let movie of movies">
         <app-movies-box
+          [movie]="movie"
           (addToCart)="onAddToCart($event)"
           class="w-full"
           [fullWidthMode]="cols === 1"
