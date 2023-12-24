@@ -13,6 +13,7 @@ import { ActivatedRoute } from "@angular/router";
 import { MoviesDBService } from "../../../../services/movies-db.service";
 import { Movie } from "../../../../models/mov.model";
 import { DOCUMENT, isPlatformBrowser } from "@angular/common";
+import { WishlistService } from "../../../../services/wishlist.service";
 
 @Component({
   selector: "app-movie-detail",
@@ -22,7 +23,6 @@ export class MovieDetailComponent implements OnInit {
   movieId: number = 0;
   movie: Movie | undefined;
   @Input() movieEmit: Movie | undefined;
-  @Output() addToCart = new EventEmitter();
 
   private apiLoaded = false;
   videoId: string | undefined;
@@ -31,6 +31,7 @@ export class MovieDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private movieDBService: MoviesDBService,
+    private wishListService: WishlistService,
     private renderer: Renderer2,
     @Inject(DOCUMENT) private document: Document,
     @Inject(PLATFORM_ID) private platformId: Object
@@ -56,8 +57,13 @@ export class MovieDetailComponent implements OnInit {
       this.videoURL = `http://localhost:4200/`;
     });
   }
-  onAddToWishList(): void {
-    this.movieEmit = this.movie;
-    this.addToCart.emit(this.movieEmit);
+  onAddToCart(movie: Movie): void {
+    this.wishListService.addToWishList({
+      movie: movie.image,
+      name: movie.title,
+      quantity: 1,
+      category: movie.genre,
+      id: movie.id,
+    });
   }
 }

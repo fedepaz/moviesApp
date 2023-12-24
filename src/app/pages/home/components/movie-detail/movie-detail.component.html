@@ -34,7 +34,7 @@
   </div>
   <div class="flex justify-between m-4">
     <span class="text-red-400">Add to Wish List</span>
-    <button (click)="onAddToWishList()">
+    <button *ngIf="movie" (click)="onAddToCart(movie)">
       <mat-icon class="text-gray-300">queue</mat-icon>
     </button>
   </div>
